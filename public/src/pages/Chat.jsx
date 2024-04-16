@@ -23,7 +23,7 @@ export default function Chat () {
           localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
         )
       )
-      const defaultUser = { _id: '661e279541478eab655b09c6', username: 'krishna', email: 'krishna.mehta@oneadvanced.com' }
+      const defaultUser = { _id: '661e645b08d30a400ec1ca65', username: 'OneAssist', email: 'oneassist.mehta@oneadvanced.com' }
       setCurrentChat(defaultUser)
     }
   }, [])

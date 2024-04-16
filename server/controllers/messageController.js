@@ -37,7 +37,7 @@ module.exports.addMessage = async (req, res, next) => {
       if (message.indexOf('HR') !== -1) {
         return res.json({
           msg: `<div>
-              <a href="https://www.oneadvanced.com/products/hr/">HR</a>
+              Yes we have product for HR management. </br></br>Here is more information about product <a href="https://www.oneadvanced.com/products/hr/">HR Management</a>
             </div>`
         })
       } else if (message.indexOf('support') !== -1) {

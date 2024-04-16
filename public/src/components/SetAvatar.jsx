@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from 'react-router-dom'
 import { setAvatarRoute } from '../utils/APIRoutes'
 export default function SetAvatar () {
-  const api = 'https://api.multiavatar.com/4645646'
+  const api = 'https://cdn.svc.oneadvanced.com/mosaic/2.0.0/img/logo.svg'
   const navigate = useNavigate()
   const [avatars, setAvatars] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -39,7 +39,7 @@ export default function SetAvatar () {
 
       if (data.isSet) {
         user.isAvatarImageSet = true
-        // user.avatarImage = data.image
+        user.avatarImage = data.image
         localStorage.setItem(
           process.env.REACT_APP_LOCALHOST_KEY,
           JSON.stringify(user)
@@ -55,7 +55,7 @@ export default function SetAvatar () {
     const data = []
     for (let i = 0; i < 4; i++) {
       const image = await axios.get(
-        `${api}/${Math.round(Math.random() * 1000)}`
+        `${api}`
       )
       const buffer = new Buffer(image.data)
       data.push(buffer.toString('base64'))
@@ -76,7 +76,7 @@ export default function SetAvatar () {
             <div className='title-container'>
               <h1>Pick an Avatar as your profile picture</h1>
             </div>
-            {/* <div className='avatars'>
+            <div className='avatars'>
               {avatars.map((avatar, index) => {
                 return (
                   <div
@@ -93,7 +93,7 @@ export default function SetAvatar () {
                   </div>
                 )
               })}
-            </div> */}
+            </div>
             <button onClick={setProfilePicture} className='submit-btn'>
               Set as Profile Picture
             </button>
