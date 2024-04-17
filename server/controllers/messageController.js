@@ -36,21 +36,21 @@ module.exports.addMessage = async (req, res, next) => {
       await delay(2000)
       if (message.indexOf('HR') !== -1) {
         return res.json({
-          msg: `<div>
+          msg: `
               Yes we have product for HR management. </br></br>Here is more information about product <a href="https://www.oneadvanced.com/products/hr/">HR Management</a>
-            </div>`
+            `
         })
       } else if (message.indexOf('support') !== -1) {
         return res.json({
-          msg: `<div>
+          msg: `
               Welcome to OneAssist
-            </div>`
+            `
         })
       } else {
         return res.json({
-          msg: `<div>
+          msg: `
               Sorry couldnt understand
-            </div>`
+            `
         })
       }
     } else return res.json({ msg: 'Failed to add message to the database' })
