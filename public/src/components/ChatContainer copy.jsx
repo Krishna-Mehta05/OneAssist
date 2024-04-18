@@ -8,9 +8,7 @@ import { sendMessageRoute, recieveMessageRoute } from '../utils/APIRoutes'
 
 export default function ChatContainer ({ currentChat, socket }) {
   const [messages, setMessages] = useState([])
-  const [genMsg, setgenMsg] = useState('')
   const scrollRef = useRef()
-  const [curQ, setcurQ] = useState('')
   const [arrivalMessage, setArrivalMessage] = useState(null)
 
   useEffect(async () => {
@@ -22,7 +20,7 @@ export default function ChatContainer ({ currentChat, socket }) {
       to: currentChat._id
     })
     setMessages(response.data)
-    setArrivalMessage({ fromSelf: false, message: '<p>Welcome to OneAssist</br></br> How can I help you? &#128516 </p>' })
+    // setArrivalMessage({ fromSelf: false, message: '<p>Welcome to OneAssist</br></br> How can I help you? </p>' })
   }, [currentChat])
 
   useEffect(() => {
@@ -35,10 +33,6 @@ export default function ChatContainer ({ currentChat, socket }) {
     }
     getCurrentChat()
   }, [currentChat])
-
-  const sendMsg = (msg) => {
-
-  }
 
   const handleSendMsg = async (msg) => {
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -56,24 +50,50 @@ export default function ChatContainer ({ currentChat, socket }) {
       to: currentChat._id,
       message: msg
     })
-    // setArrivalMessage()
+    // setArrivalMessage({ fromSelf: false, message: response.data.msg })
     const msgs = [...messages]
     msgs.push({ fromSelf: true, message: msg })
-    setcurQ(msg)
+    setMessages(msgs)
+    // const msgs2 = await displayAnswer(response.data.msg, msg)
     const ans = response.data.msg
-    for (let i = 0; i < (ans.length / 2) - 1; i++) {
-      // if (i > 0) {
+    for (let i = 1; i < ans.length / 2; i++) {
+      // if (i > 1) {
       //   msgs.pop()
       // }
-      await delay(100)
-      // msgs.push({ fromSelf: false, message: `<div>${ans.substring(0, i * 2)}</div>` })
+      // msgs.push({ fromSelf: false, message: `<div>${ans.substring(0, 2 * i)}</div>` })
+      // msgs.push({ fromSelf: false, message: i })
+      await delay(Math.floor(Math.random() * (1000)) + 500)
+      // setArrivalMessage({ fromSelf: false, message: `<div>${ans.substring(0, 2 * i)}</div>` })
       // setMessages(msgs)
-      setgenMsg(`<div>${ans.substring(0, i * 2)}</div>`)
+      setMessages((prev) => {
+        prev.pop()
+        return [...prev, { fromSelf: false, message: i }]
+      })
     }
-    setcurQ('')
-    setgenMsg('')
-    msgs.push({ fromSelf: false, message: ans })
+    // msgs.pop()
+    // msgs.push({ fromSelf: false, message: ans })
+    setArrivalMessage({ fromSelf: false, message: ans })
     setMessages(msgs)
+
+    // setMessages(msgs2)
+  }
+
+  const displayAnswer = async (ans, msg) => {
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
+    const msgs = [...messages, msg]
+    for (let i = 1; i < ans.length / 2 - 1; i++) {
+      if (i > 1) {
+        msgs.pop()
+      }
+      // msgs.push({ fromSelf: false, message: `<div>${ans.substring(0, 2 * i)}</div>` })
+      msgs.push({ fromSelf: false, message: i })
+      await delay(Math.floor(Math.random() * (100)) + 50)
+    }
+    msgs.pop()
+    msgs.push({ fromSelf: false, message: ans })
+    // setMessages(msgs)
+    return msgs
   }
 
   useEffect(() => {
@@ -90,7 +110,7 @@ export default function ChatContainer ({ currentChat, socket }) {
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [messages, curQ])
+  }, [messages])
 
   return (
     <Container>
@@ -106,12 +126,12 @@ export default function ChatContainer ({ currentChat, socket }) {
             <h3>{currentChat.username}</h3>
           </div>
         </div>
-        {/* <Logout /> */}
+        <Logout />
       </div>
       <div className='chat-messages'>
         {messages.map((message) => {
           return (
-            <div key={uuidv4()}>
+            <div ref={scrollRef} key={uuidv4()}>
               <div
                 className={`message ${
                   message.fromSelf ? 'sended' : 'received'
@@ -124,30 +144,6 @@ export default function ChatContainer ({ currentChat, socket }) {
             </div>
           )
         })}
-        {curQ.length > 0 && (
-          <div>
-            <div
-              className={`message ${
-                  genMsg.fromSelf ? 'sended' : 'sended'
-                }`}
-            >
-              <div className='content '>
-                <div dangerouslySetInnerHTML={{ __html: curQ }} />
-              </div>
-            </div>
-          </div>
-        )}
-        <div key={uuidv4()}>
-          <div
-            className={`message ${
-                  genMsg.fromSelf ? 'sended' : 'received'
-                }`}
-          >
-            <div ref={scrollRef} className='content '>
-              <div dangerouslySetInnerHTML={{ __html: genMsg }} />
-            </div>
-          </div>
-        </div>
       </div>
       <ChatInput handleSendMsg={handleSendMsg} />
     </Container>
@@ -163,11 +159,10 @@ const Container = styled.div`
     grid-template-rows: 15% 70% 15%;
   }
   .chat-header {
-    margin: 2px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2px 2rem;
+    padding: 0 2rem;
     .user-details {
       display: flex;
       align-items: center;
@@ -193,7 +188,7 @@ const Container = styled.div`
     &::-webkit-scrollbar {
       width: 0.2rem;
       &-thumb {
-        background-color: yellow;
+        background-color: #ffffff39;
         width: 0.1rem;
         border-radius: 1rem;
       }
@@ -207,8 +202,7 @@ const Container = styled.div`
         padding: 1rem;
         font-size: 1.1rem;
         border-radius: 1rem;
-        color: white;
-        background-color: orange;
+        color: #d1d1d1;
         @media screen and (min-width: 720px) and (max-width: 1080px) {
           max-width: 70%;
         }
@@ -217,15 +211,13 @@ const Container = styled.div`
     .sended {
       justify-content: flex-end;
       .content {
-        background-color: #e24a05;
+        background-color: #4f04ff21;
       }
     }
     .recieved {
       justify-content: flex-start;
-      border: 1px solid black;
       .content {
-        background-color: black;
-        color: black;
+        background-color: #9900ff20;
       }
     }
   }
