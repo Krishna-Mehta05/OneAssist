@@ -22,7 +22,7 @@ export default function ChatContainer ({ currentChat, socket }) {
       to: currentChat._id
     })
     setMessages(response.data)
-    setArrivalMessage({ fromSelf: false, message: '<p>Welcome to OneAssist,</br></br> We can help you with any query, how can we assist you today?  </p>' })
+    setArrivalMessage({ fromSelf: false, message: '<p> <b>OneAssist</b><br/><br/>Welcome to OneAssist,</br>We can help you with any query, how can we assist you today?  </p>' })
   }, [currentChat])
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export default function ChatContainer ({ currentChat, socket }) {
       // if (i > 0) {
       //   msgs.pop()
       // }
-      await delay(100)
+      await delay(50)
       // msgs.push({ fromSelf: false, message: `<div>${ans.substring(0, i * 2)}</div>` })
       // setMessages(msgs)
       setgenMsg(`<div>${ans.substring(0, i * 2)}</div>`)

@@ -3,8 +3,8 @@ import { BsEmojiSmileFill } from 'react-icons/bs'
 import { IoMdSend } from 'react-icons/io'
 import styled from 'styled-components'
 import image2 from '../assets/plusicon.png'
-import { FaMicrophone } from "react-icons/fa";
-import { RiImageAddFill } from "react-icons/ri";
+import { FaMicrophone } from 'react-icons/fa'
+import { RiImageAddFill } from 'react-icons/ri'
 
 export default function ChatInput ({ handleSendMsg }) {
   const [msg, setMsg] = useState('')
@@ -30,20 +30,19 @@ export default function ChatInput ({ handleSendMsg }) {
   return (
     <Container>
       <div className='button-container'>
-   
+
         {/* <div className='emoji'>
           <BsEmojiSmileFill onClick={handleEmojiPickerhideShow} />
-         
+
           {showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />}
-          
-   
+
           </div> */}
-          {/* <FaPlus /> */}
-          <div className="plus">
+        {/* <FaPlus /> */}
+        <div className='plus'>
           <RiImageAddFill />
 
-          </div>
-          {/* <img src={image2} alt="" /> */}
+        </div>
+        {/* <img src={image2} alt="" /> */}
       </div>
       <form className='input-container' onSubmit={(event) => sendChat(event)}>
         <input
@@ -52,7 +51,7 @@ export default function ChatInput ({ handleSendMsg }) {
           onChange={(e) => setMsg(e.target.value)}
           value={msg}
         />
-        <button className="submitBtn" type='submit'>
+        <button className='submitBtn' type='submit'>
           <IoMdSend />
           <FaMicrophone />
         </button>
