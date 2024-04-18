@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { BsEmojiSmileFill } from 'react-icons/bs'
 import { IoMdSend } from 'react-icons/io'
 import styled from 'styled-components'
-import Picker from 'emoji-picker-react'
-import { FaPlus } from "react-icons/fa";
+import image2 from '../assets/plusicon.png'
 import { FaMicrophone } from "react-icons/fa";
+import { RiImageAddFill } from "react-icons/ri";
 
 export default function ChatInput ({ handleSendMsg }) {
   const [msg, setMsg] = useState('')
@@ -31,19 +31,24 @@ export default function ChatInput ({ handleSendMsg }) {
     <Container>
       <div className='button-container'>
    
-        <div className='emoji'>
+        {/* <div className='emoji'>
           <BsEmojiSmileFill onClick={handleEmojiPickerhideShow} />
          
           {showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />}
           
    
+          </div> */}
+          {/* <FaPlus /> */}
+          <div className="plus">
+          <RiImageAddFill />
+
           </div>
-          <FaPlus />
+          {/* <img src={image2} alt="" /> */}
       </div>
       <form className='input-container' onSubmit={(event) => sendChat(event)}>
         <input
           type='text'
-          placeholder='type your message here'
+          placeholder='Ask us Anything...'
           onChange={(e) => setMsg(e.target.value)}
           value={msg}
         />
@@ -59,7 +64,7 @@ export default function ChatInput ({ handleSendMsg }) {
 const Container = styled.div`
   display: grid;
   align-items: center;
-  grid-template-columns: 5% 95%;
+  grid-template-columns: 4% 95%;
   background-color: #e24a05;
   padding: 0 2rem;
   @media screen and (min-width: 720px) and (max-width: 1080px) {
@@ -70,7 +75,11 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     color: white;
-    gap: 1rem;
+    // gap: 1rem;
+    .plus{
+     font-size: 40px;
+     margin-top:2px;
+    }
     .emoji {
       position: relative;
       svg {

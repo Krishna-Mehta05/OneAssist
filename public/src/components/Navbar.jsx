@@ -8,10 +8,10 @@ export const Navbar = () => {
   return (
     <div className="outerdiv">
       <div className="logo-container">
-        <img className="logo" src={logo} alt="" />
+        {/* <img className="logo" src={logo} alt="" /> */}
       </div>
       <div className="logout-container">
-        <Logout />
+        {/* <Logout /> */}
       </div>
     </div>
 
