@@ -9,7 +9,7 @@
 body,
 button,
 input {
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
@@ -19,5 +19,5 @@ body {
 }
 
 .Toastify__toast-theme--dark {
-  background-color: #00000076 !important;
+  background-color: orange !important;
 }

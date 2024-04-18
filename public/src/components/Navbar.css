@@ -1,0 +1,22 @@
+.outerdiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* This will push the logo to the left and the logout button to the right */
+    padding: 0 3rem;
+  }
+  
+  .logo-container {
+    flex-grow: 1; /* This will make the logo container take up all available space */
+    text-align: center; /* Centers the logo horizontally */
+  }
+  
+  .logo {
+    width: 200px;
+    height: 100px;
+    object-fit: contain;
+  }
+  
+  .logout-container {
+    margin-left: auto; /* This pushes the logout button to the right */
+  }
+  

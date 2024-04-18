@@ -25,8 +25,9 @@ export default function Contacts ({ contacts, changeChat }) {
           <img src={Logo} alt='logo' />
           <h3>OneAssist</h3>
         </div> */}
-        <div className='contacts'>
+        {/* <div className='contacts'>
           {contacts.map((contact, index) => {
+            console.log(contact.username)
             return (
               <div
                 key={contact._id}
@@ -47,7 +48,7 @@ export default function Contacts ({ contacts, changeChat }) {
               </div>
             )
           })}
-        </div>
+        </div> */}
         {/* <div className='current-user'>
           <div className='avatar'>
             <img
@@ -65,9 +66,9 @@ export default function Contacts ({ contacts, changeChat }) {
 }
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 10% 75% 15%;
+  grid-template-rows: 20% 75% 15%;
   overflow: hidden;
-  background-color: #080420;
+  background-color: white;
   .brand {
     display: flex;
     align-items: center;
@@ -118,12 +119,12 @@ const Container = styled.div`
       }
     }
     .selected {
-      background-color: #9a86f3;
+      background-color: black;
     }
   }
 
   .current-user {
-    background-color: #0d0d30;
+    background-color: orange;
     display: flex;
     justify-content: center;
     align-items: center;

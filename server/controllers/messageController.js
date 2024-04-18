@@ -40,7 +40,8 @@ module.exports.addMessage = async (req, res, next) => {
               Yes we have product for HR management. </br></br>Here is more information about product <a href="https://www.oneadvanced.com/products/hr/">HR Management</a>
             `
         })
-      } else if (message.indexOf('support') !== -1) {
+      }
+       else if (message.indexOf('support') !== -1) {
         return res.json({
           msg: `
               Welcome to OneAssist
