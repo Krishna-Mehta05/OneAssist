@@ -225,7 +225,7 @@ const Container = styled.div`
         font-size: 1.1rem;
         border-radius: 1rem;
         color: white;
-        background-color: orange;
+        background-color: #F37721;
         @media screen and (min-width: 720px) and (max-width: 1080px) {
           max-width: 70%;
         }
@@ -234,7 +234,7 @@ const Container = styled.div`
     .sended {
       justify-content: flex-end;
       .content {
-        background-color: #e24a05;
+        background-color: #40404C;
       }
     }
     .recieved {
