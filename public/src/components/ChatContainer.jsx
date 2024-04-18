@@ -20,7 +20,7 @@ export default function ChatContainer ({ currentChat, socket }) {
       to: currentChat._id
     })
     setMessages(response.data)
-    setArrivalMessage({ fromSelf: false, message: '<p>Welcome to OneAssist</br></br> How can I help you? </p>' })
+    setArrivalMessage({ fromSelf: false, message: '<p>Welcome to OneAssist</br></br> How can I help you? &#128516 </p>' })
   }, [currentChat])
 
   useEffect(() => {
@@ -84,7 +84,7 @@ export default function ChatContainer ({ currentChat, socket }) {
             <h3>{currentChat.username}</h3>
           </div>
         </div>
-        <Logout />
+        {/* <Logout /> */}
       </div>
       <div className='chat-messages'>
         {messages.map((message) => {
@@ -117,10 +117,11 @@ const Container = styled.div`
     grid-template-rows: 15% 70% 15%;
   }
   .chat-header {
+    margin: 2px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+    padding: 2px 2rem;
     .user-details {
       display: flex;
       align-items: center;
@@ -146,7 +147,7 @@ const Container = styled.div`
     &::-webkit-scrollbar {
       width: 0.2rem;
       &-thumb {
-        background-color: #ffffff39;
+        background-color: yellow;
         width: 0.1rem;
         border-radius: 1rem;
       }
@@ -160,7 +161,8 @@ const Container = styled.div`
         padding: 1rem;
         font-size: 1.1rem;
         border-radius: 1rem;
-        color: #d1d1d1;
+        color: white;
+        background-color: orange;
         @media screen and (min-width: 720px) and (max-width: 1080px) {
           max-width: 70%;
         }
@@ -169,13 +171,15 @@ const Container = styled.div`
     .sended {
       justify-content: flex-end;
       .content {
-        background-color: #4f04ff21;
+        background-color: #e24a05;
       }
     }
     .recieved {
       justify-content: flex-start;
+      border: 1px solid black;
       .content {
-        background-color: #9900ff20;
+        background-color: black;
+        color: black;
       }
     }
   }
