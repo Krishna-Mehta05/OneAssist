@@ -22,7 +22,7 @@ export default function ChatContainer ({ currentChat, socket }) {
       to: currentChat._id
     })
     setMessages(response.data)
-    setArrivalMessage({ fromSelf: false, message: '<p>Welcome to OneAssist</br></br> How can I help you? &#128516 </p>' })
+    setArrivalMessage({ fromSelf: false, message: '<p>Welcome to OneAssist,</br></br> We can help you with any query, how can we assist you today?  </p>' })
   }, [currentChat])
 
   useEffect(() => {
@@ -92,6 +92,13 @@ export default function ChatContainer ({ currentChat, socket }) {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, curQ])
 
+  // const ops = {
+  //   opacity: 0.1
+  // }
+  // const ops2 = {
+  //   opacity: 1.2
+  // }
+
   return (
     <Container>
       <div className='chat-header'>
@@ -137,17 +144,19 @@ export default function ChatContainer ({ currentChat, socket }) {
             </div>
           </div>
         )}
-        <div key={uuidv4()}>
-          <div
-            className={`message ${
+        {genMsg.length > 0 && (
+          <div key={uuidv4()}>
+            <div
+              className={`message ${
                   genMsg.fromSelf ? 'sended' : 'received'
                 }`}
-          >
-            <div ref={scrollRef} className='content '>
-              <div dangerouslySetInnerHTML={{ __html: genMsg }} />
+            >
+              <div ref={scrollRef} className='content '>
+                <div dangerouslySetInnerHTML={{ __html: genMsg }} />
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
       <ChatInput handleSendMsg={handleSendMsg} />
     </Container>
@@ -185,6 +194,14 @@ const Container = styled.div`
     }
   }
   .chat-messages {
+    
+    background-image: url('oneassist.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    position: relative;
     padding: 1rem 2rem;
     display: flex;
     flex-direction: column;
